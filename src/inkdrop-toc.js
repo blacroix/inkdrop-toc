@@ -1,6 +1,5 @@
 import React from 'react'; // eslint-disable-line
 import Toc from 'remark-toc';
-import $ from 'jquery';
 
 class TocPlugin {
 
