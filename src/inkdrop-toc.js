@@ -25,13 +25,13 @@ class TocPlugin {
 
   setTocComponent() {
     // noinspection JSUnresolvedVariable
-    const OrigA = this.MDEPreview.remarkReactOptions.remarkReactComponents.a;
+    this.OrigA = this.MDEPreview.remarkReactOptions.remarkReactComponents.a;
     const hash = '#';
     // noinspection JSUnresolvedVariable
     this.MDEPreview.remarkReactOptions.remarkReactComponents.a = (props) => {
       if (props.href && props.href.startsWith(hash)) {
         return <a {...props} onClick={() => this.onTocEntryClick(props)}>{props.children}</a>;
-      } else if (OrigA) {
+      } else if (this.OrigA) {
         return <OrigA {...props}>{props.children}</OrigA>;
       } else {
         return <a {...props}>{props.children}</a>;
@@ -41,12 +41,11 @@ class TocPlugin {
 
   unsetTocComponent() {
     // noinspection JSUnresolvedVariable
-    const OrigA = this.MDEPreview.remarkReactOptions.remarkReactComponents.a;
     const hash = '#';
     // noinspection JSUnresolvedVariable
     this.MDEPreview.remarkReactOptions.remarkReactComponents.a = (props) => {
       if (props.href && props.href.startsWith(hash)) {
-        if (OrigA) {
+        if (this.OrigA) {
           return <OrigA {...props}>{props.children}</OrigA>;
         } else {
           return <a {...props}>{props.children}</a>;
