@@ -1,7 +1,7 @@
 {
   "name": "inkdrop-toc",
   "main": "./lib/inkdrop-toc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Markdown Table of Contents plugin for Inkdrop",
   "keywords": [
     "toc",
