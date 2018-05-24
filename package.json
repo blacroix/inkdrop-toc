@@ -18,6 +18,7 @@
     "inkdrop": ">=3.7.3 <4.0.0"
   },
   "dependencies": {
+    "jquery": "3.3.1",
     "remark-toc": "5.0.0"
   },
   "devDependencies": {
@@ -25,7 +26,6 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "eslint": "4.19.1",
-    "eslint-plugin-react": "^7.8.2",
-    "react": "16.3.2"
+    "eslint-plugin-react": "^7.8.2"
   }
 }
