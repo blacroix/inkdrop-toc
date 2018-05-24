@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Toc from 'remark-toc';
 import $ from 'jquery';
 
@@ -67,8 +68,7 @@ class TocPlugin {
 
 }
 
-// noinspection JSUnusedGlobalSymbols
-const tocPlugin = {
+module.exports = {
 
   toc: null,
 
@@ -88,6 +88,3 @@ const tocPlugin = {
   },
 
 };
-
-// noinspection JSUnusedGlobalSymbols
-export default tocPlugin;
