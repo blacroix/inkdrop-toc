@@ -41,27 +41,35 @@ class TocPlugin {
 
   unsetTocComponent() {
     // noinspection JSUnresolvedVariable
-    const hash = '#';
-    // noinspection JSUnresolvedVariable
-    this.MDEPreview.remarkReactOptions.remarkReactComponents.a = (props) => {
-      if (props.href && props.href.startsWith(hash)) {
-        if (this.OrigA) {
-          return <OrigA {...props}>{props.children}</OrigA>;
-        } else {
-          return <a {...props}>{props.children}</a>;
-        }
-      }
-    };
+    this.MDEPreview.remarkReactOptions.remarkReactComponents.a = this.OrigA;
   }
 
   // noinspection JSMethodCanBeStatic
   onTocEntryClick(props) {
-    const duration = 200;
-    const entry = `#user-content-${props.href.substr(1, props.href.length)}`;
+    const duration = 100;
+    const entry = `user-content-${props.href.substr(1, props.href.length)}`;
     const offset = 300;
-    const mdePreview = $('.mde-preview');
-    // noinspection JSUnresolvedFunction
-    mdePreview.stop().animate({scrollTop: $(entry).first().offset().top + mdePreview.scrollTop() - offset}, duration);
+    const mdePreview = document.getElementsByClassName('mde-preview')[0];
+    if (this.animation) {
+      clearTimeout(this.animation);
+      this.animation = null;
+    }
+    this.scrollTop(mdePreview, document.getElementById(entry).offsetTop + mdePreview.scrollTop - offset, duration);
+  }
+
+  scrollTop(element, offset, duration) {
+    if (duration <= 0) {
+      return;
+    }
+    const difference = offset - element.scrollTop;
+    const perTick = difference / duration * 10;
+    this.animation = setTimeout(() => {
+      element.scrollTop = element.scrollTop + perTick;
+      if (element.scrollTop >= offset) {
+        return;
+      }
+      this.scrollTop(element, offset, duration - 10);
+    }, 10);
   }
 
 }
