@@ -47,7 +47,7 @@ class TocPlugin {
   // noinspection JSMethodCanBeStatic
   onTocEntryClick(props) {
     const duration = 100;
-    const entry = `user-content-${props.href.substr(1, props.href.length)}`;
+    const entry = `user-content-${decodeURI(props.href.substr(1, props.href.length))}`;
     const offset = 300;
     const mdePreview = document.getElementsByClassName('mde-preview')[0];
     if (this.animation) {
